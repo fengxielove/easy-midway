@@ -15,6 +15,7 @@ export interface CurdOption {
     name: 'ignoreToken' | string;
     url: ApiTypes[];
   };
+  dto?: any;
 }
 
 export interface RouterOptions {

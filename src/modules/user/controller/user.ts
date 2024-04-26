@@ -1,7 +1,15 @@
 import { EasyController } from '@/decorator/EasyController.decorator.js';
-import { Get, Inject, Query } from '@midwayjs/core';
+import {
+  Body,
+  Get,
+  Inject,
+  Post,
+  Query,
+  MidwayDecoratorService,
+} from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { UserEntity } from '../entity/user.entity.js';
+import { UserDTO } from '@/dto/user.js';
 
 @EasyController({
   prefix: '/user',
@@ -11,6 +19,9 @@ import { UserEntity } from '../entity/user.entity.js';
 export class UserController {
   @Inject()
   ctx: Context;
+
+  @Inject()
+  decoratorService: MidwayDecoratorService;
 
   @Get('/info/:id')
   async getInfo(@Query() id: string) {

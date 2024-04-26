@@ -2,6 +2,7 @@ import { MidwayConfig } from '@midwayjs/core';
 import { uploadWhiteList } from '@midwayjs/upload';
 import { join } from 'path';
 import { tmpdir } from 'os';
+import { LoggerInfo } from '@midwayjs/logger';
 
 export default {
   // use for cookie sign key, should change to your own and keep security

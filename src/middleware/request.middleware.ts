@@ -6,10 +6,7 @@ export class RequestMiddleware implements IMiddleware<Context, NextFunction> {
   resolve() {
     return async (ctx: Context, next: NextFunction) => {
       const startTime = Date.now();
-
       const result = await next(); // 确保打印日志在请求处理之后执行
-      console.log(result);
-
       const endTime = Date.now();
 
       ctx.logger.info(
@@ -18,6 +15,8 @@ export class RequestMiddleware implements IMiddleware<Context, NextFunction> {
           ctx.request.body
         )}
         [响应信息: ] ${JSON.stringify(result)}
+
+        powered by request.middleware
          `
       );
     };
