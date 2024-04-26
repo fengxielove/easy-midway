@@ -18,7 +18,7 @@
     "typeRoots": ["./typings", "./node_modules/@types"],
     "outDir": "dist",
     "rootDir": "src",
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

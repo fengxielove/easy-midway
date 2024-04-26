@@ -4,6 +4,7 @@ import { Context } from '@midwayjs/koa';
 @Catch()
 export class DefaultErrorFilter {
   async catch(err: MidwayHttpError, ctx: Context) {
+    ctx.logger.info(err);
     ctx.logger.error(
       `
       [请求信息：] ${ctx.method} ${ctx.url} - 参数：${JSON.stringify(

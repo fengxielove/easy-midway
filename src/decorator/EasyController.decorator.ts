@@ -9,12 +9,14 @@ import {
   saveModule,
   WEB_ROUTER_KEY,
   CONTROLLER_KEY,
+  Scope,
+  ScopeEnum,
+  Provide,
 } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { difference } from 'lodash-es';
 import { BaseEntity } from 'typeorm';
 
-export const EASY_CONTROLLER_KEY = 'easy-controller';
 export const apiDesc = {
   add: '新增',
   delete: '删除',
@@ -39,11 +41,11 @@ export function EasyController(
 
     // 过滤掉已经重写的 crud 方法，然后进行路由的自动化创建
     const differenceApi = difference(curdOption.api, overwriteMethod);
-    if (differenceApi && differenceApi.length > 0) {
-      differenceApi.forEach(apiName => {
-        target.prototype[apiName] = defaultHandler(apiName, curdOption!.entity);
-      });
-    }
+    // if (differenceApi && differenceApi.length > 0) {
+    //   differenceApi.forEach(apiName => {
+    //     target.prototype[apiName] = defaultHandler(apiName, curdOption!.entity);
+    //   });
+    // }
 
     // 将装饰的类，绑定到该装饰器，用于后续能够获取到 class
     saveModule(CONTROLLER_KEY, target);
@@ -54,6 +56,10 @@ export function EasyController(
       target,
       autoApi: differenceApi,
     });
+    // 指定 IoC 容器创建实例的作用域，这里注册为请求作用域，这样能取到 ctx
+    Scope(ScopeEnum.Request)(target);
+    // 调用一下 Provide 装饰器，这样用户的 class 可以省略写 @Provide() 装饰器了
+    Provide()(target);
   };
 }
 

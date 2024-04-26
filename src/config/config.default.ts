@@ -43,4 +43,12 @@ export default {
       },
     },
   },
+  easy: {
+    initDB: false,
+    initMenu: true,
+    crud: {
+      softDelete: true,
+      pageSize: 15,
+    },
+  },
 } as MidwayConfig;
