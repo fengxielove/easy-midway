@@ -11,7 +11,7 @@ import {
 } from '@midwayjs/core';
 import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 import { isEmpty } from 'lodash-es';
-import * as SqlString from 'sqlstring';
+import SqlString from 'sqlstring';
 import { EasyValidateException } from '../exception/validate.js';
 import { ERRINFO, EVENT } from '../constant/glotbal.js';
 import { Brackets, Equal, In } from 'typeorm';
@@ -105,6 +105,8 @@ export class BaseMysqlService {
    * @param connectionName
    */
   async nativeQuery(sql: string, params: any[], connectionName: string) {
+    console.log('escapeId', SqlString);
+
     if (isEmpty(params)) {
       params = this.sqlParams;
     }

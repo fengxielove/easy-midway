@@ -31,22 +31,6 @@ export function EasyController(
   routerOptions = { middleware: [], sensitive: true }
 ): ClassDecorator {
   return (target: any) => {
-    // 首先 获取重写的方法
-    const overwriteMethod = Object.getOwnPropertyNames(target.prototype).filter(
-      properyName =>
-        properyName !== 'constructor' &&
-        typeof target.prototype[properyName] === 'function' &&
-        curdOption.api.includes(properyName as ApiTypes)
-    );
-
-    // 过滤掉已经重写的 crud 方法，然后进行路由的自动化创建
-    const differenceApi = difference(curdOption.api, overwriteMethod);
-    // if (differenceApi && differenceApi.length > 0) {
-    //   differenceApi.forEach(apiName => {
-    //     target.prototype[apiName] = defaultHandler(apiName, curdOption!.entity);
-    //   });
-    // }
-
     // 将装饰的类，绑定到该装饰器，用于后续能够获取到 class
     saveModule(CONTROLLER_KEY, target);
     saveMetaData({
@@ -54,7 +38,8 @@ export function EasyController(
       curdOption,
       routerOptions,
       target,
-      autoApi: differenceApi,
+      // autoApi: differenceApi,
+      autoApi: curdOption.api,
     });
     // 指定 IoC 容器创建实例的作用域，这里注册为请求作用域，这样能取到 ctx
     Scope(ScopeEnum.Request)(target);
@@ -99,13 +84,3 @@ const saveMetaData = ({
     });
   }
 };
-
-const defaultHandler =
-  (method: string, entity: BaseEntity) => async (ctx: Context) => {
-    if (method === 'add') {
-      const result = await entity.save(ctx.request.body);
-      return result;
-    } else {
-      return '待开发';
-    }
-  };

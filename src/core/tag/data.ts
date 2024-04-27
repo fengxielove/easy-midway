@@ -1,4 +1,4 @@
-import { EASY_METHOD_TAG_KEY, EASY_URL_TAG_KEY } from '@/decorator/tag.js';
+import { EASY_METHOD_TAG_KEY, EASY_URL_TAG_KEY } from '@/core/decorator/tag.js';
 import {
   CONTROLLER_KEY,
   Provide,
