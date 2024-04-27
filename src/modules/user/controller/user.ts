@@ -1,4 +1,4 @@
-import { EasyController } from '@/decorator/EasyController.decorator.js';
+import { EasyController } from '@/decorator/controller.js';
 import { UserEntity } from '../entity/user.entity.js';
 import { BaseController } from '@/core/controller/baseController.js';
 

@@ -6,6 +6,7 @@
   "type": "module",
   "dependencies": {
     "@midwayjs/bootstrap": "^3.12.0",
+    "@midwayjs/cache-manager": "3",
     "@midwayjs/core": "^3.12.0",
     "@midwayjs/info": "^3.12.0",
     "@midwayjs/koa": "^3.12.0",
@@ -17,14 +18,17 @@
     "@types/lodash-es": "^4.17.12",
     "@types/sqlstring": "^2.3.2",
     "artillery": "^2.0.10",
+    "cache-manager-fs-hash": "^2.0.0",
     "globby": "^14.0.1",
     "lodash-es": "^4.17.21",
+    "md5": "^2.3.0",
     "mysql2": "^3.9.7",
     "sqlstring": "^2.3.3",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@midwayjs/mock": "^3.12.0",
+    "@types/md5": "^2.3.5",
     "@types/mocha": "^10.0.1",
     "@types/node": "16",
     "c8": "^8.0.1",

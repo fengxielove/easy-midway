@@ -40,7 +40,6 @@ export class BaseMysqlService {
 
   @Init()
   init() {
-    console.log('_easyConfig', this._easyConfig);
     this.sqlParams = [];
   }
   // 设置模型

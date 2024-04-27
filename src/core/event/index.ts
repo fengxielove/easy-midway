@@ -28,6 +28,8 @@ export class EasyEventManager extends Events {
    * 初始化，加载所有事件模块
    */
   async init(): Promise<void> {
+    console.log('事件模块初始化');
+
     const eventModules = listModule(EASY_EVENT_MESSAGE);
     for (const module of eventModules) {
       await this.handlerEvent(module);

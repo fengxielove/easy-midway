@@ -11,6 +11,9 @@ importers:
       '@midwayjs/bootstrap':
         specifier: ^3.12.0
         version: 3.15.8
+      '@midwayjs/cache-manager':
+        specifier: '3'
+        version: 3.15.8
       '@midwayjs/core':
         specifier: ^3.12.0
         version: 3.15.8
@@ -44,12 +47,18 @@ importers:
       artillery:
         specifier: ^2.0.10
         version: 2.0.10(@types/node@16.18.96)(typescript@5.1.6)
+      cache-manager-fs-hash:
+        specifier: ^2.0.0
+        version: 2.0.0
       globby:
         specifier: ^14.0.1
         version: 14.0.1
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
+      md5:
+        specifier: ^2.3.0
+        version: 2.3.0
       mysql2:
         specifier: ^3.9.7
         version: 3.9.7
@@ -63,6 +72,9 @@ importers:
       '@midwayjs/mock':
         specifier: ^3.12.0
         version: 3.15.8
+      '@types/md5':
+        specifier: ^2.3.5
+        version: 2.3.5
       '@types/mocha':
         specifier: ^10.0.1
         version: 10.0.6
@@ -353,6 +365,10 @@ packages:
   '@midwayjs/bootstrap@3.15.8':
     resolution: {integrity: sha512-lluSjlWHRVWylRgb1Abt8q/ySFkVSIZNDJ8aVp4YupTIf3lb7ntOvdUPhkOd6BejtEw1rlovgUEWI0XIQAoRcg==}
     engines: {node: '>=12.11.0'}
+
+  '@midwayjs/cache-manager@3.15.8':
+    resolution: {integrity: sha512-/4jYxQ2+qDWg7TOgy3Z3/gvLlxp+NOzC2KgZ+ulknknWyOLzQ1tu46tVFlLmtqAPqF6l2nJkU2lndSyaHOz/yw==}
+    engines: {node: '>=12'}
 
   '@midwayjs/cookies@1.2.0':
     resolution: {integrity: sha512-gdfAXk3+uL+9qcNo9lNnUFJCUGXXxCitBjyz9QJR08dcZ11mqTbxVNXhea525e3ZwKREy6f4PHAWofFwlPOZzQ==}
@@ -982,6 +998,9 @@ packages:
   '@types/lodash@4.17.0':
     resolution: {integrity: sha512-t7dhREVv6dbNj0q17X12j7yDG4bD/DHYX7o5/DbDxobP0HnGPgpRz2Ej77aL7TZT3DSw13fqUTj8J4mMnqa7WA==}
 
+  '@types/md5@2.3.5':
+    resolution: {integrity: sha512-/i42wjYNgE6wf0j2bcTX6kuowmdL/6PE4IVitMpm2eYKBUuYCprdcWVK+xEF0gcV6ufMCRhtxmReGfc6hIK7Jw==}
+
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
@@ -1384,6 +1403,10 @@ packages:
     resolution: {integrity: sha512-IKufZ1o4Ut42YUrZSo8+qnMTrFuKkvyoLXUywKz9GJ5BrhOFGhLdkx9sG4KAnVvbY6kEcSFjLQul+DVmBm2bgA==}
     engines: {node: '>= 6.0.0'}
 
+  cache-manager-fs-hash@2.0.0:
+    resolution: {integrity: sha512-w03tp8mvfglRUFtItCdC114rFyzk0umu5LnnRM5spnu2+Mj8/2PrDHCnaoPltto/2fK94fC/Kw2rHqBXqIEgTQ==}
+    engines: {node: '>=18.0.0'}
+
   cacheable-lookup@5.0.4:
     resolution: {integrity: sha512-2/kNscPhpcxrOigMZzbiWF7dz8ilhb/nIHU3EyZiXWXpeq/au8qJ8VhdftMkty3n7Gj6HIGalQG8oiBNB3AJgA==}
     engines: {node: '>=10.6.0'}
@@ -1434,6 +1457,9 @@ packages:
 
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
+
+  charenc@0.0.2:
+    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
 
   charm@0.1.2:
     resolution: {integrity: sha512-syedaZ9cPe7r3hoQA9twWYKu5AIyCswN5+szkmPBe9ccdLrj4bYaCnLVPTLd2kgVRc7+zoX4tyPgRnFKCj5YjQ==}
@@ -1628,6 +1654,9 @@ packages:
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
+
+  crypt@0.0.2:
+    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
 
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -2519,6 +2548,9 @@ packages:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
 
+  is-buffer@1.1.6:
+    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
+
   is-builtin-module@2.0.0:
     resolution: {integrity: sha512-G2jLHphOywpgrL/AaJKWDXpdpGR9X4V1PCkB+EwG5Z28z8EukgdWnAUFAS2wdBtIpwHhHBIiq0NBOWEbSXN0Rg==}
     engines: {node: '>=4'}
@@ -2800,11 +2832,17 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lockfile@1.0.4:
+    resolution: {integrity: sha512-cvbTwETRfsFh4nHsL1eGWapU1XFi5Ot9E85sWAwia7Y7EgB7vfqcZhTKZ+l7hCGxSPoushMv5GKhT5PdLv03WA==}
+
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
   lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
+
+  lodash.clonedeep@4.5.0:
+    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
 
   lodash.defaults@4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
@@ -2908,6 +2946,9 @@ packages:
 
   matcher-collection@1.1.2:
     resolution: {integrity: sha512-YQ/teqaOIIfUHedRam08PB3NK7Mjct6BvzRnJmpGDm8uFXpNr1sbY4yuflI5JcEs6COpYA0FpRQhSDBf1tT95g==}
+
+  md5@2.3.0:
+    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -5001,6 +5042,11 @@ snapshots:
       '@midwayjs/async-hooks-context-manager': 3.15.8
       '@midwayjs/event-bus': 1.9.4
 
+  '@midwayjs/cache-manager@3.15.8':
+    dependencies:
+      lodash.clonedeep: 4.5.0
+      lru-cache: 7.18.3
+
   '@midwayjs/cookies@1.2.0':
     dependencies:
       scmp: 2.1.0
@@ -5882,6 +5928,8 @@ snapshots:
 
   '@types/lodash@4.17.0': {}
 
+  '@types/md5@2.3.5': {}
+
   '@types/mime@1.3.5': {}
 
   '@types/minimist@1.2.5': {}
@@ -6459,6 +6507,10 @@ snapshots:
       mime-types: 2.1.35
       ylru: 1.4.0
 
+  cache-manager-fs-hash@2.0.0:
+    dependencies:
+      lockfile: 1.0.4
+
   cacheable-lookup@5.0.4: {}
 
   cacheable-request@6.1.0:
@@ -6523,6 +6575,8 @@ snapshots:
       supports-color: 7.2.0
 
   chardet@0.7.0: {}
+
+  charenc@0.0.2: {}
 
   charm@0.1.2: {}
 
@@ -6738,6 +6792,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  crypt@0.0.2: {}
 
   crypto-random-string@2.0.0: {}
 
@@ -7695,6 +7751,8 @@ snapshots:
     dependencies:
       binary-extensions: 2.3.0
 
+  is-buffer@1.1.6: {}
+
   is-builtin-module@2.0.0:
     dependencies:
       builtin-modules: 2.0.0
@@ -7994,9 +8052,15 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lockfile@1.0.4:
+    dependencies:
+      signal-exit: 3.0.7
+
   lodash-es@4.17.21: {}
 
   lodash.camelcase@4.3.0: {}
+
+  lodash.clonedeep@4.5.0: {}
 
   lodash.defaults@4.2.0: {}
 
@@ -8070,6 +8134,12 @@ snapshots:
   matcher-collection@1.1.2:
     dependencies:
       minimatch: 3.1.2
+
+  md5@2.3.0:
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
 
   media-typer@0.3.0: {}
 
