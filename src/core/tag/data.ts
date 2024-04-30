@@ -20,8 +20,15 @@ export class EasyUrlTagData {
    * 初始化，收集所有标记了 URL 标签的控制器和方法信息
    */
   async init(): Promise<void> {
+    console.log('tag 初始化');
+    // 获取所有绑定到某类型装饰器的 class，即获取所有 添加了 @EasyUrlTag 的类
+    // tags: class BookUser extends BaseController {}
     const tags = listModule(EASY_URL_TAG_KEY);
+
     for (const controller of tags) {
+      // 从类中获取信息： @EasyUrlTag({
+      //   key: TagTypes.IGNORE_TOKEN,
+      // })
       const controllerOption = getClassMetadata(CONTROLLER_KEY, controller);
       const tagOption = getClassMetadata(EASY_URL_TAG_KEY, controller);
       if (tagOption?.key) {
@@ -33,7 +40,7 @@ export class EasyUrlTagData {
           ),
         ]);
       }
-
+      // 列出 class 上保存的所有的属性的元信息
       const listPropertyMetas = listPropertyDataFromClass(
         EASY_METHOD_TAG_KEY,
         controller

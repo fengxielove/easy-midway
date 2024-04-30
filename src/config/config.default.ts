@@ -26,7 +26,7 @@ export default {
     cleanTimeout: 5 * 60 * 1000,
     base64: false,
     // 仅在匹配路径到 /api/upload 的时候去解析 body 中的文件信息
-    match: /\/commom\/upload/,
+    match: /\/file\/upload/,
   },
   typeorm: {
     dataSource: {

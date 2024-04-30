@@ -1,7 +1,6 @@
 import { Inject, Post, Fields, Files, Body, Controller } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { UserDTO } from '../dto/user.js';
-import { EasyController } from '@/core/decorator/controller.js';
 import { ValidateService } from '@midwayjs/validate';
 
 @Controller('/file')

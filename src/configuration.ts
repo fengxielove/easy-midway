@@ -20,10 +20,14 @@ import { RequestMiddleware } from './middleware/request.middleware.js';
 
 import { ILogger } from '@midwayjs/logger';
 
+import * as easy from '@/core/index.js';
+import * as jwt from '@midwayjs/jwt';
+
 @Configuration({
   imports: [
     koa,
     validate,
+    jwt,
     upload,
     {
       component: info,
@@ -31,6 +35,7 @@ import { ILogger } from '@midwayjs/logger';
     },
     staticFile,
     orm,
+    easy,
   ],
   importConfigs: [
     {
@@ -50,15 +55,18 @@ export class MainConfiguration {
   webRouterService: MidwayWebRouterService;
 
   async onReady() {
+    this.logger.info('服务启动中');
     const start = Date.now();
     this.app.useMiddleware([RequestMiddleware]);
 
-    const eps = (await this.webRouterService.getFlattenRouterTable()).map(
-      item => item.fullUrl
-    );
-    this.logger.info('eps', eps);
-
     this.app.useFilter([DefaultErrorFilter]);
+
+    let eps = [];
+    let allRoutes = await this.webRouterService.getFlattenRouterTable();
+    allRoutes.map(item => {
+      eps.push(item.fullUrl);
+    });
+    this.logger.info('eps', eps);
     this.logger.info('启动耗时 %d ms', Date.now() - start);
   }
 }

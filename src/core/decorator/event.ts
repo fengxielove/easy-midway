@@ -12,7 +12,7 @@ interface EasyEventOptions {
 
 export const EASY_CLS_EVENT_KEY = 'decorator:easy:cls:event';
 
-function EasyEvent(options: EasyEventOptions = {}): ClassDecorator {
+export function EasyEvent(options: EasyEventOptions = {}): ClassDecorator {
   return (target: any) => {
     // 将装饰的类，绑定到该装饰器，用于后续能获取到 class
     saveModule(EASY_CLS_EVENT_KEY, target);
@@ -28,7 +28,7 @@ function EasyEvent(options: EasyEventOptions = {}): ClassDecorator {
  * @param eventName 事件名称
  * @returns 方法装饰器
  */
-function Event(eventName: string): MethodDecorator {
+export function Event(eventName: string): MethodDecorator {
   return (
     target,
     propertyKey: string | symbol,

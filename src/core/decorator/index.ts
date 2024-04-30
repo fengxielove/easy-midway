@@ -11,14 +11,14 @@ import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 
 import { EasyUrlTagData } from '@/core/tag/data.js';
 import { EASY_CACHE } from './cache.js';
-import { EASY_TRANSACTION, EasyTransaction } from './transaction.js';
+import { EASY_TRANSACTION } from './transaction.js';
 import md5 from 'md5';
 import { EasyCommException } from '@/core/exception/comm.js';
 import { CachingFactory, Caching } from '@midwayjs/cache-manager';
 
 @Provide()
 @Scope(ScopeEnum.Singleton)
-class EasyDecorator {
+export class EasyDecorator {
   @Inject()
   private typeORMDataSourceManager: TypeORMDataSourceManager;
 
@@ -26,6 +26,7 @@ class EasyDecorator {
   private decoratorService: MidwayDecoratorService;
 
   @InjectClient(CachingFactory, 'default')
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   private midwayCache: Caching;
 
@@ -34,6 +35,7 @@ class EasyDecorator {
 
   @Init()
   async init(): Promise<void> {
+    console.log('装饰器的 初始化');
     await this.transaction();
     await this.cache();
     await this.easyUrlTagData.init();

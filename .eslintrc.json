@@ -3,5 +3,8 @@
   "ignorePatterns": ["node_modules", "dist", "test", "typings"],
   "env": {
     "mocha": true
+  },
+  "rules": {
+    "prefer-const": "off"
   }
 }

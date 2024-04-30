@@ -1,10 +1,9 @@
-import { ModuleConfig } from '../../@types/interface.js';
+import { UserMiddleware } from '@/middleware/user.middleware.js';
 
 export default () => {
   return {
     name: '用户模块',
     description: '用户的登录、注册等基础功能',
-    prefix: '',
     globalMiddlewares: [],
     // 模块加载顺序
     order: 10,
@@ -22,5 +21,5 @@ export default () => {
         refreshExpire: 24 * 3600 * 15,
       },
     },
-  } as ModuleConfig;
+  };
 };

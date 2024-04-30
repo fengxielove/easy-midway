@@ -20,6 +20,9 @@ importers:
       '@midwayjs/info':
         specifier: ^3.12.0
         version: 3.15.10
+      '@midwayjs/jwt':
+        specifier: '3'
+        version: 3.15.11
       '@midwayjs/koa':
         specifier: ^3.12.0
         version: 3.15.10
@@ -59,6 +62,9 @@ importers:
       md5:
         specifier: ^2.3.0
         version: 2.3.0
+      moment:
+        specifier: ^2.30.1
+        version: 2.30.1
       mysql2:
         specifier: ^3.9.7
         version: 3.9.7
@@ -68,6 +74,9 @@ importers:
       typeorm:
         specifier: ^0.3.20
         version: 0.3.20(mysql2@3.9.7)(ts-node@10.9.2(@types/node@16.18.96)(typescript@5.1.6))
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
     devDependencies:
       '@midwayjs/mock':
         specifier: ^3.12.0
@@ -81,6 +90,9 @@ importers:
       '@types/node':
         specifier: '16'
         version: 16.18.96
+      '@types/uuid':
+        specifier: ^9.0.8
+        version: 9.0.8
       c8:
         specifier: ^8.0.1
         version: 8.0.1
@@ -391,6 +403,10 @@ packages:
 
   '@midwayjs/info@3.15.10':
     resolution: {integrity: sha512-bUk+c8nd5eBGhH9idr7dFJE4e6C2xX5dLQzABhnxM2613A2IOmS/2kN+P73CKZ/n1QKqO1hUxbnrpzouGoOEOA==}
+    engines: {node: '>=12'}
+
+  '@midwayjs/jwt@3.15.11':
+    resolution: {integrity: sha512-UO62inzK0cqKliK9IjCTr5admoz6u5oWgevzrs/gc8K9Q6jX0wuGWix0wEs2Qfw11Clf4tIL/woWzkUpeds6VQ==}
     engines: {node: '>=12'}
 
   '@midwayjs/koa@3.15.10':
@@ -980,6 +996,9 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
+  '@types/jsonwebtoken@9.0.6':
+    resolution: {integrity: sha512-/5hndP5dCjloafCXns6SZyESp3Ldq7YjH3zwzwczYnjxIT0Fqzk5ROSYVGfFyczIue7IUEj8hkvLbPoLQ18vQw==}
+
   '@types/keygrip@1.0.6':
     resolution: {integrity: sha512-lZuNAY9xeJt7Bx4t4dx0rYCDqGPW8RXhQZK1td7d4H6E9zYbLoOtjBvfwdTKpsyxQI/2jv+armjX/RW+ZNpXOQ==}
 
@@ -1042,6 +1061,9 @@ packages:
 
   '@types/supertest@2.0.16':
     resolution: {integrity: sha512-6c2ogktZ06tr2ENoZivgm7YnprnhYE4ZoXGMY+oA7IuAf17M8FWvujXZGmxLv8y0PTyts4x5A+erSwVUFA8XSg==}
+
+  '@types/uuid@9.0.8':
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   '@typescript-eslint/eslint-plugin@5.62.0':
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}
@@ -5073,6 +5095,11 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
+  '@midwayjs/jwt@3.15.11':
+    dependencies:
+      '@types/jsonwebtoken': 9.0.6
+      jsonwebtoken: 9.0.2
+
   '@midwayjs/koa@3.15.10':
     dependencies:
       '@koa/router': 12.0.1
@@ -5901,6 +5928,10 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
+  '@types/jsonwebtoken@9.0.6':
+    dependencies:
+      '@types/node': 16.18.96
+
   '@types/keygrip@1.0.6': {}
 
   '@types/keyv@3.1.4':
@@ -5971,6 +6002,8 @@ snapshots:
   '@types/supertest@2.0.16':
     dependencies:
       '@types/superagent': 4.1.14
+
+  '@types/uuid@9.0.8': {}
 
   '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@5.1.6))(eslint@7.32.0)(typescript@5.1.6)':
     dependencies:

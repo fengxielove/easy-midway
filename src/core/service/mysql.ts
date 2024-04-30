@@ -12,9 +12,9 @@ import {
 import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 import { isEmpty } from 'lodash-es';
 import SqlString from 'sqlstring';
-import { EasyValidateException } from '../exception/validate.js';
-import { ERRINFO, EVENT } from '../constant/glotbal.js';
-import { Brackets, Equal, In } from 'typeorm';
+import { EasyValidateException } from '@/core/index.js';
+import { ERRINFO, EVENT } from '@/core/index.js';
+import { Brackets, In } from 'typeorm';
 import { EasyEventManager } from '../event/index.js';
 
 @Provide()
@@ -105,8 +105,6 @@ export class BaseMysqlService {
    * @param connectionName
    */
   async nativeQuery(sql: string, params: any[], connectionName: string) {
-    console.log('escapeId', SqlString);
-
     if (isEmpty(params)) {
       params = this.sqlParams;
     }
@@ -114,14 +112,17 @@ export class BaseMysqlService {
     this.sqlParams = [];
     newParams = newParams.map(param => SqlString.escape(param));
     const manager = this.getOrmManager(connectionName);
-    return await manager.query(sql, newParams);
+    return await manager.query(
+      sql,
+      newParams.map(item => Number(item))
+    );
   }
 
   /**
    * 获得ORM管理
    *  @param connectionName 连接名称
    */
-  getOrmManager(connectionName: string = 'default') {
+  getOrmManager(connectionName = 'default') {
     return this.typeORMDataSourceManager.getDataSource(connectionName);
   }
 
@@ -194,7 +195,11 @@ export class BaseMysqlService {
     }
     let params = [];
     params = params.concat(this.sqlParams);
+
+    console.log('sql:', sql);
+    console.log('params', params);
     const result = await this.nativeQuery(sql, params, connectionName);
+    console.log('result', result);
     const countResult = await this.nativeQuery(
       this.getCountSql(sql),
       params,
@@ -303,7 +308,7 @@ export class BaseMysqlService {
     } else {
       const upsert = this._easyConfig.crud?.upsert || 'normal';
       if (type === 'update') {
-        if (upsert == 'save') {
+        if (upsert === 'save') {
           const info = await this.entity.findOneBy({ id: param.id });
           param = {
             ...info,
@@ -314,10 +319,10 @@ export class BaseMysqlService {
         upsert === 'normal'
           ? await this.entity.update(param.id, param)
           : await this.entity.save(param);
-      } else if (type == 'add') {
+      } else if (type === 'add') {
         param.createTime = new Date();
         param.updateTime = new Date();
-        upsert == 'normal'
+        upsert === 'normal'
           ? await this.entity.insert(param)
           : await this.entity.save(param);
       }
@@ -359,7 +364,8 @@ export class BaseMysqlService {
     const selects = ['a.*'];
     const find = this.entity.createQueryBuilder('a');
     if (option) {
-      if (typeof option == 'function') {
+      if (typeof option === 'function') {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         option = await option(this.baseCtx, this.baseApp);
       }
@@ -377,15 +383,15 @@ export class BaseMysqlService {
       // 默认条件
       if (option.where) {
         const wheres =
-          typeof option.where == 'function'
+          typeof option.where === 'function'
             ? await option.where(this.baseCtx, this.baseApp)
             : option.where;
         if (!isEmpty(wheres)) {
           for (const item of wheres) {
             if (
-              item.length == 2 ||
-              (item.length == 3 &&
-                (item[2] || (item[2] === 0 && item[2] != '')))
+              item.length === 2 ||
+              (item.length === 3 &&
+                (item[2] || (item[2] === 0 && item[2] !== '')))
             ) {
               for (const key in item[1]) {
                 this.sqlParams.push(item[1][key]);
@@ -398,7 +404,7 @@ export class BaseMysqlService {
       // 附加排序
       if (!isEmpty(option.addOrderBy)) {
         for (const key in option.addOrderBy) {
-          if (order && order == key) {
+          if (order && order === key) {
             sort = option.addOrderBy[key].toUpperCase();
           }
           find.addOrderBy(
@@ -408,7 +414,7 @@ export class BaseMysqlService {
         }
       }
       // 关键字模糊搜索
-      if (keyWord || (keyWord == 0 && keyWord != '')) {
+      if (keyWord || (keyWord === 0 && keyWord !== '')) {
         keyWord = `%${keyWord}%`;
         find.andWhere(
           new Brackets(qb => {
@@ -439,7 +445,7 @@ export class BaseMysqlService {
           }
           // 单表字段无别名的情况下操作
           if (typeof key === 'string') {
-            if (query[key] || (query[key] == 0 && query[key] == '')) {
+            if (query[key] || (query[key] === 0 && query[key] === '')) {
               c[key] = query[key];
               const eq = query[key] instanceof Array ? 'in' : '=';
               if (eq === 'in') {
@@ -452,7 +458,7 @@ export class BaseMysqlService {
           } else {
             if (
               query[key.requestParam] ||
-              (query[key.requestParam] == 0 && query[key.requestParam] !== '')
+              (query[key.requestParam] === 0 && query[key.requestParam] !== '')
             ) {
               c[key.column] = query[key.requestParam];
               const eq = query[key.requestParam] instanceof Array ? 'in' : '=';
@@ -473,7 +479,7 @@ export class BaseMysqlService {
     if (sort && order) {
       const sorts = sort.toUpperCase().split(',');
       const orders = order.split(',');
-      if (sorts.length != orders.length) {
+      if (sorts.length !== orders.length) {
         throw new EasyValidateException(ERRINFO.SORTFIELD);
       }
       for (const i in sorts) {
