@@ -8,10 +8,10 @@ import {
   getClassMetadata,
 } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
-import { GlobalConfig } from '../constant/glotbal.js';
+import { GlobalConfig } from '@/core/index.js';
 import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 import { CurdOption } from './types.js';
-import { BaseService } from '../service/baseService.js';
+import { BaseService } from '@/core/service/baseService.js';
 
 @Provide()
 export class BaseController {
@@ -56,8 +56,10 @@ export class BaseController {
   private async insertParam(curdOption: CurdOption): Promise<void> {
     if (curdOption.insertParam) {
       this.baseCtx.request.body = {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         ...this.baseCtx.request.body,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         ...(await curdOption.insertParam(this.baseCtx, this.baseApp)),
       };
@@ -101,6 +103,7 @@ export class BaseController {
    * @returns
    */
   async delete() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { ids } = this.baseCtx.request.body;
     return this.ok(await this.baseService.delete(ids));

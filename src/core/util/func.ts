@@ -21,7 +21,7 @@ export class FuncUtil {
       return this.replace(new RegExp(search, 'gm'), replacement);
     };
 
-    this.coreLogger.init(
+    this.coreLogger.info(
       '\x1B[36m [easy:core] midwayjs easy core func handler \x1B[0m'
     );
   }

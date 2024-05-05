@@ -3,6 +3,8 @@ export { EasyConfiguration as Configuration } from './configuration.js';
 // controller
 export * from './controller/baseController.js';
 
+// 事件
+export * from './event/index.js';
 // 装饰器
 export * from './decorator/controller.js';
 export * from './decorator/cache.js';
@@ -21,12 +23,16 @@ export * from './exception/core.js';
 export * from './exception/validate.js';
 export * from './exception/filter.js';
 
-// sercice
+// service
 export * from './service/baseService.js';
 export * from './service/mysql.js';
 
 // tag
 export * from './tag/data.js';
+
+// 模块
+export * from './module/config.js';
+export * from './module/import.js';
 
 // 其他
 export * from './constant/glotbal.js';

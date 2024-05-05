@@ -1,7 +1,6 @@
 import {
   attachClassMetadata,
   CONTROLLER_KEY,
-  Provide,
   saveClassMetadata,
   saveModule,
   Scope,
@@ -79,7 +78,7 @@ export function EasyController(
         }
         if (fs.existsSync(path)) {
           const config = (await import(path)).default();
-          console.log('config', config);
+          // console.log('config', config);
           routerOptions.middleware = (config.middlewares || []).concat(
             routerOptions.middleware || []
           );

@@ -17,7 +17,7 @@ import { EasyEventManager } from '../event/index.js';
 @Provide()
 @Scope(ScopeEnum.Singleton)
 export class EasyModuleImport {
-  @Config('typeorm.dataSouorce')
+  @Config('typeorm.dataSource')
   private ormConfig: any;
 
   @InjectDataSource('default')
@@ -45,8 +45,9 @@ export class EasyModuleImport {
   // @Inject()
   // private easyModuleMenu:
 
-  @Init()
+  // @Init()
   async init() {
+    this.coreLogger.info('module import.ts init');
     if (this.easyConfig.initDB) {
       // const modules = this.easyModuleConfig.modules;
       // const importLockPath = path.

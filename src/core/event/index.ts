@@ -6,6 +6,7 @@ import {
   ScopeEnum,
   getClassMetadata,
   listModule,
+  Init,
 } from '@midwayjs/core';
 import { groupBy, random as randomLodash } from 'lodash-es';
 import pm2 from 'pm2';
@@ -27,8 +28,9 @@ export class EasyEventManager extends Events {
   /**
    * 初始化，加载所有事件模块
    */
+  // @Init()
   async init(): Promise<void> {
-    console.log('事件模块初始化');
+    console.log('事件模块初始化 powered by event/index.ts');
 
     const eventModules = listModule(EASY_EVENT_MESSAGE);
     for (const module of eventModules) {
@@ -44,6 +46,7 @@ export class EasyEventManager extends Events {
    * @param args 参数
    */
   emit(event: string, ...args: any[]): boolean {
+    console.log('core event emit event: ', event);
     return super.emit(EASY_EVENT_MESSAGE, {
       type: EASY_EVENT_MESSAGE,
       data: {
@@ -54,6 +57,7 @@ export class EasyEventManager extends Events {
   }
 
   /**
+   * 在插件系统中使用
    * 发送全局事件，可选是否随机发给一个进程
    * @param event 事件名
    * @param random 是否随机
@@ -132,6 +136,7 @@ export class EasyEventManager extends Events {
    */
   private async globalEvent(): Promise<void> {
     process.on('message', async message => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       if (message?.data?.type !== `${EASY_EVENT_MESSAGE}@${this.keys}`) return;
       await this.doAction(message);

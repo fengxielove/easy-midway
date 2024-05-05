@@ -18,9 +18,7 @@ export enum TagTypes {
  * @returns 类装饰器
  */
 export function EasyUrlTag(data: any): ClassDecorator {
-  // data { key: 'ignoreToken' }
   return (target: any) => {
-    console.log('target', target);
     // saveModule 用于保存某个类到某个装饰器
     saveModule(EASY_URL_TAG_KEY, target);
     // 保存元信息到 class
