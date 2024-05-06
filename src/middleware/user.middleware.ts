@@ -40,8 +40,10 @@ export class UserMiddleware implements IMiddleware<Context, NextFunction> {
     return async (ctx: Context, next: NextFunction) => {
       console.log('ctx.url', ctx.url);
       let url: string = ctx.url.replace(this.prefix, '').split('?')[0];
-      if (startsWith(url, '/admin/')) {
+      // if (startsWith(url, '/admin/')) {
+      if (startsWith(url, '/') && !startsWith(url, '/open')) {
         const token = ctx.get('Authorization');
+        console.log('token', token);
         try {
           ctx.user = this.jwtService.verifySync(token, this.jwtConfig.secret);
           if (ctx.user.isRefresh) {

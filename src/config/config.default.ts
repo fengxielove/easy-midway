@@ -50,5 +50,13 @@ export default {
       softDelete: true,
       pageSize: 15,
     },
+    eps: true,
+  },
+  cacheManager: {
+    clients: {
+      default: {
+        store: 'memory',
+      },
+    },
   },
 } as MidwayConfig;

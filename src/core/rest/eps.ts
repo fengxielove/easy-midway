@@ -12,7 +12,7 @@ import {
 } from '@midwayjs/core';
 import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 import { EasyUrlTagData, TagTypes } from '@/core/index.js';
-import { groupBy, isEmpty, startsWith } from 'lodash-es';
+import { filter, groupBy, isEmpty, startsWith } from 'lodash-es';
 
 @Provide()
 @Scope(ScopeEnum.Singleton)
@@ -44,6 +44,7 @@ export class EasyEps {
 
   @Init()
   async init() {
+    console.log('eps 初始化');
     if (!this.epsConfig) {
       return;
     }
@@ -138,5 +139,45 @@ export class EasyEps {
     );
   }
 
-  async entity() {}
+  /**
+   * 所有实体
+   */
+  async entity() {
+    const result = {};
+    const dataSourceNames = this.typeORMDataSourceManager.getDataSourceNames();
+    for (const dataSourceName of dataSourceNames) {
+      const entityMetaDatas =
+        this.typeORMDataSourceManager.getDataSource(
+          dataSourceName
+        ).entityMetadatas;
+
+      for (const entityMetadata of entityMetaDatas) {
+        const commColumns = [];
+        let columns = entityMetadata.columns;
+        if (entityMetadata.tableType !== 'regular') continue;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        columns = filter(
+          columns.map(e => {
+            return {
+              propertyName: e.propertyName,
+              type:
+                typeof e.type === 'string' ? e.type : e.type.name.toLowerCase(),
+              length: e.length,
+              comment: e.comment,
+              nullable: e.isNullable,
+            };
+          }),
+          o => {
+            if (['createTime', 'updateTime'].includes(o.propertyName)) {
+              commColumns.push(o);
+            }
+          }
+        ).concat(commColumns);
+        result[entityMetadata.name] = columns;
+      }
+    }
+    console.log('eps 所有实体result', result);
+    return result;
+  }
 }

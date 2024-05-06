@@ -37,3 +37,4 @@ export * from './module/import.js';
 // 其他
 export * from './constant/glotbal.js';
 export * from './util/func.js';
+export * from './rest/eps.js';

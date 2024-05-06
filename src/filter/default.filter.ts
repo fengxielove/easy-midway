@@ -20,7 +20,7 @@ export class DefaultErrorFilter {
       message = `参数校验错误：${message}`;
     }
     return {
-      code: Number(err.code),
+      code: Number(err.code) || 500,
       success: false,
       message: message,
     };

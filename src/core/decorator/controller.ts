@@ -24,7 +24,7 @@ export const apiDesc = {
 };
 
 export function EasyController(
-  curdOption: CurdOption,
+  curdOption?: CurdOption | string | RouterOptions,
   routerOptions = { middleware: [], sensitive: true }
 ): ClassDecorator {
   return (target: any) => {
@@ -106,7 +106,7 @@ const saveMetaData = ({
   module,
 }: {
   prefix: string;
-  curdOption: CurdOption;
+  curdOption: CurdOption | string | RouterOptions;
   routerOptions: RouterOptions;
   target: any;
   module?: any;
@@ -128,8 +128,10 @@ const saveMetaData = ({
   );
 
   //   追加 CRUD 路由
-  if (!isEmpty(curdOption?.api)) {
-    curdOption.api.forEach(path => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if ('api' in curdOption && !isEmpty(curdOption.api)) {
+    curdOption?.api.forEach(path => {
       attachClassMetadata(
         WEB_ROUTER_KEY,
         {

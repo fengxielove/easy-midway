@@ -17,7 +17,7 @@ export enum TagTypes {
  * @param data 标记数据
  * @returns 类装饰器
  */
-export function EasyUrlTag(data: any): ClassDecorator {
+export function EasyUrlTag(data?: any): ClassDecorator {
   return (target: any) => {
     // saveModule 用于保存某个类到某个装饰器
     saveModule(EASY_URL_TAG_KEY, target);

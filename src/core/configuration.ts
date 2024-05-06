@@ -15,10 +15,12 @@ import { EasyExceptionFilter } from '@/core/index.js';
 import { EasyDecorator } from '@/core/index.js';
 import { FuncUtil } from '@/core/index.js';
 import LocationUtil from '@/core/util/location.js';
+import * as cache from '@midwayjs/cache-manager';
 
+// 注入 cache-manager
 @Configuration({
   namespace: 'easy',
-  imports: [],
+  imports: [cache],
 })
 export class EasyConfiguration implements ILifeCycle {
   @Logger()
